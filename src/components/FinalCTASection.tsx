@@ -5,7 +5,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const FinalCTASection: React.FC = () => {
   return (
-    <section style={{ padding: '80px 0', backgroundColor: '#911209' }}>
+    <section style={{ paddingTop: '80px', backgroundColor: '#911209' }}>
       <Container>
         <Typography variant="h3" color="white" align="center" gutterBottom>
           Ready to Supercharge Your Social Media?
@@ -20,15 +20,6 @@ const FinalCTASection: React.FC = () => {
             style={{ marginRight: '10px' }}
           >
             Sign Up Now
-          </Button>
-          <Button
-            component={RouterLink}
-            to="/contact"
-            variant="contained"
-            color="secondary"
-            size="small"
-          >
-            Contact Us
           </Button>
         </div>
       </Container>

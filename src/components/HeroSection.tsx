@@ -1,22 +1,21 @@
 // src/components/HeroSection.tsx
 import React from 'react';
 import { Button, Typography, Container } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { useTheme } from '@mui/material/styles';
-import { motion } from 'framer-motion'; // Import motion from framer-motion
+import { motion } from 'framer-motion';
 
-const HeroSection: React.FC = () => {
+const HeroSection: React.FC<{ onNavigate: (section: string) => void }> = ({ onNavigate }) => {
   const theme = useTheme();
 
   return (
     <section
       style={{
-        padding: theme.spacing(15, 0), // Using theme.spacing for consistent padding
-        backgroundColor: '#ad1a1d', // Background color
+        padding: theme.spacing(15, 0),
+        backgroundColor: '#ad1a1d',
         color: 'white',
         textAlign: 'center',
         position: 'relative',
@@ -35,9 +34,9 @@ const HeroSection: React.FC = () => {
             align="center"
             sx={{
               fontWeight: 700,
-              fontSize: '3.5rem', // Slightly larger for better emphasis
-              marginBottom: theme.spacing(2.5), // Consistent spacing
-              fontFamily: theme.typography.h2.fontFamily, // Use font from theme
+              fontSize: '3.5rem',
+              marginBottom: theme.spacing(2.5),
+              fontFamily: theme.typography.h2.fontFamily,
             }}
           >
             Empower Social Media with AI Automation
@@ -58,9 +57,9 @@ const HeroSection: React.FC = () => {
             sx={{
               fontWeight: 300,
               fontSize: '1.2rem',
-              marginBottom: theme.spacing(5), // Consistent spacing
-              lineHeight: 1.6, // Improved line height for better readability
-              fontFamily: theme.typography.fontFamily, // Use Open Sans from theme
+              marginBottom: theme.spacing(5),
+              lineHeight: 1.6,
+              fontFamily: theme.typography.fontFamily,
             }}
           >
             Effortlessly manage interactions on{' '}
@@ -95,14 +94,13 @@ const HeroSection: React.FC = () => {
           style={{ marginTop: theme.spacing(4) }}
         >
           <Button
-            component={RouterLink}
-            to="/features"
+            onClick={() => onNavigate('features')}
             variant="contained"
             color="primary"
             size="large"
             sx={{
               marginRight: theme.spacing(2),
-              padding: theme.spacing(1.5, 5), // Optimized padding using theme.spacing
+              padding: theme.spacing(1.5, 5),
               fontSize: '16px',
               borderRadius: '30px',
               fontWeight: '600',
@@ -112,16 +110,15 @@ const HeroSection: React.FC = () => {
           </Button>
 
           <Button
-            component={RouterLink}
-            to="/contact"
+            onClick={() => onNavigate('contact')}
             variant="outlined"
             color="secondary"
             size="large"
             sx={{
-              padding: theme.spacing(1.5, 5), // Optimized padding using theme.spacing
+              padding: theme.spacing(1.5, 5),
               fontSize: '16px',
               borderRadius: '30px',
-              border: `2px solid ${theme.palette.primary.main}`, // Use primary color from theme
+              border: `2px solid ${theme.palette.primary.main}`,
               fontWeight: '600',
             }}
           >
