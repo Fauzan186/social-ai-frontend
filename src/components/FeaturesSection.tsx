@@ -1,6 +1,6 @@
 // src/components/FeaturesSection.tsx
 import React from 'react';
-import { Container, Typography, Grid, Card, CardContent, Box, Button } from '@mui/material';
+import { Container, Typography, Grid, Card, CardContent, Box } from '@mui/material';
 import { AccessAlarm, Code, Dashboard, Lock } from '@mui/icons-material'; // Import icons
 
 const FeaturesSection: React.FC = () => {
@@ -18,8 +18,6 @@ const FeaturesSection: React.FC = () => {
           Why Choose Us?
         </Typography>
 
-     
-    
         {/* Features Grid */}
         <Grid container spacing={4} justifyContent="center">
           {/* Feature 1: Seamless Integration */}

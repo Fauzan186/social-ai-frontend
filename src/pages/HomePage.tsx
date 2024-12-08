@@ -8,6 +8,7 @@ import FinalCTASection from '../components/FinalCTASection';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
+
 const HomePage: React.FC = () => {
   // References for each section
   const featuresRef = useRef<HTMLDivElement>(null);

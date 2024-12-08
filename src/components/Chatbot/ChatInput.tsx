@@ -44,7 +44,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onFileChange }) => {
                 placeholder="Type your message..."
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
-                onKeyDown={handleKeyDown}
+                onKeyDown={()=>handleKeyDown}
                 multiline
                 maxRows={3} // Limit the height of the input area
                 sx={{ mr: 1 }}

@@ -1,5 +1,5 @@
 // src/components/HowItWorksSection.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Typography, Grid, Box, Paper } from '@mui/material';
 import { AccountCircle, UploadFile, Share, BarChart } from '@mui/icons-material';
 
@@ -36,7 +36,7 @@ const HowItWorksSection: React.FC = () => {
     <section>
       <Container>
         {/* Heading */}
-        <Typography variant="h3" color="textPrimary" align="center"           sx={{ fontWeight: 700, marginBottom: 4 }}
+        <Typography variant="h3" color="textPrimary" align="center"  sx={{ fontWeight: 700, marginBottom: 4 }}
         >
           How It Works
         </Typography>

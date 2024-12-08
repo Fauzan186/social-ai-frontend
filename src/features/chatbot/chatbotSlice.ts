@@ -1,23 +1,10 @@
-// src/features/chatbot/chatbotSlice.ts
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface User {
-    name: string;
-    profilePicture: string;
-}
 
-interface Message {
-    id: string;
-    user: User;
-    text: string;
-    language: string;
-    file: File | null;
-    timestamp: string;
-}
 
 interface ChatbotState {
-    messages: Message[];
+    messages: any;
     currentLanguage: string; // Current selected language
 }
 
@@ -30,7 +17,7 @@ const chatbotSlice = createSlice({
     name: 'chatbot',
     initialState,
     reducers: {
-        addMessage: (state, action: PayloadAction<Message>) => {
+        addMessage: (state, action: PayloadAction<any>) => {
             state.messages.push(action.payload);
         },
         setLanguage: (state, action: PayloadAction<string>) => {

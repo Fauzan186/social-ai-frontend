@@ -95,7 +95,7 @@ const Chatbot: React.FC = () => {
                         ))}
                     </Box>
                 ) : (
-                    messages.map((msg) => (
+                    messages.map((msg:any) => (
                         <Box key={msg.id} className="message-container">
                             {msg.user ? (
                                 <Box className="user-message" sx={{ backgroundColor: theme.palette.background.paper }}>
@@ -114,7 +114,7 @@ const Chatbot: React.FC = () => {
                 <div ref={messagesEndRef} />
             </Box>
             <Box className="chat-input-container">
-                <ChatInput onFileChange={(file) => { /* Handle file upload logic here */ }} onSend={(query) => setSelectedQuery(query)} />
+                <ChatInput onFileChange={()=>(query:any) => setSelectedQuery(query)} />
             </Box>
         </Box>
     );
