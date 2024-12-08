@@ -1,0 +1,37 @@
+/* index.css */
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set up a default font-family and background color */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* A few utility classes */
+.text-center {
+  text-align: center;
+}
+
+/* Custom link style */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Global button styles */
+button {
+  cursor: pointer;
+}
+
+/* Ensure images don't exceed their container */
+img {
+  max-width: 100%;
+  height: auto;
+}
