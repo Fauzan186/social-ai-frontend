@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useTheme, useMediaQuery } from '@mui/material';
+import zetaiLogo from '../assets/zetaai_100px_with_10px_margin.png'; // Adjust the path as necessary
 
 const Header: React.FC<{ onNavigate: (section: string) => void }> = ({ onNavigate }) => {
   const theme = useTheme();
@@ -28,17 +29,10 @@ const Header: React.FC<{ onNavigate: (section: string) => void }> = ({ onNavigat
     <>
       <AppBar position="static" sx={{ backgroundColor: '#911209' }}>
         <Toolbar>
-          <Typography
-            variant="h6"
-            sx={{
-              flexGrow: 1,
-              fontWeight: 'bold',
-              cursor: 'pointer',
-            }}
-            onClick={() => onNavigate('hero')}
-          >
-            ZetaAI
-          </Typography>
+          
+          <img src={zetaiLogo} alt="ZetaAI Logo"  style={{height:"60px"}} />
+          
+          {/* Conditional rendering based on screen size */}
 
           {isMobile ? (
             // Mobile view: Menu button and Drawer

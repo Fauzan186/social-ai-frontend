@@ -7,6 +7,7 @@ import FAQsSection from '../components/FAQsSection';
 import FinalCTASection from '../components/FinalCTASection';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import ZetaAIFeatures from '../components/ZetaAIFeatures';
 
 
 const HomePage: React.FC = () => {
@@ -33,6 +34,7 @@ const HomePage: React.FC = () => {
     <div>
       <Header onNavigate={handleNavigation} />
       <HeroSection onNavigate={handleNavigation} />
+      <ZetaAIFeatures />
       <div ref={featuresRef}>
         <FeaturesSection />
       </div>
