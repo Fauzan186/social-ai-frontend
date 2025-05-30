@@ -1,17 +1,14 @@
 import React, { useRef } from 'react';
-import Header from '../components/Header';
+import Layout from '../components/Layout';
 import HeroSection from '../components/HeroSection';
 import FeaturesSection from '../components/FeaturesSection';
 import HowItWorksSection from '../components/HowItWorksSection';
 import FAQsSection from '../components/FAQsSection';
 import FinalCTASection from '../components/FinalCTASection';
 import Contact from '../components/Contact';
-import Footer from '../components/Footer';
 import ZetaAIFeatures from '../components/ZetaAIFeatures';
 
-
 const HomePage: React.FC = () => {
-  // References for each section
   const featuresRef = useRef<HTMLDivElement>(null);
   const howItWorksRef = useRef<HTMLDivElement>(null);
   const faqsRef = useRef<HTMLDivElement>(null);
@@ -25,14 +22,11 @@ const HomePage: React.FC = () => {
       contact: contactRef,
     };
 
-    // Scroll to the relevant section
-    const selectedRef = sectionRefs[section];
-    selectedRef?.current?.scrollIntoView({ behavior: 'smooth' });
+    sectionRefs[section]?.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div>
-      <Header onNavigate={handleNavigation} />
+    <Layout onNavigate={handleNavigation}>
       <HeroSection onNavigate={handleNavigation} />
       <ZetaAIFeatures />
       <div ref={featuresRef}>
@@ -48,8 +42,7 @@ const HomePage: React.FC = () => {
         <FinalCTASection />
         <Contact />
       </div>
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 
