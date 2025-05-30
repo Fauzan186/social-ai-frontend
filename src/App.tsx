@@ -17,9 +17,9 @@ const App: React.FC = () => {
         <Route
           path="/dashboard"
           element={
-            <PrivateRoute>
+            // <PrivateRoute>
               <DashboardPage />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
       </Routes>
