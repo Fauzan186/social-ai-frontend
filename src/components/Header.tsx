@@ -15,7 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useTheme, useMediaQuery } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {  logout } from '../features/common/authSlice';
+import { logout } from '../features/common/authSlice';
 import zetaiLogo from '../assets/zetaai_100px_with_10px_margin.png';
 
 const Header: React.FC = () => {
@@ -36,15 +36,11 @@ const Header: React.FC = () => {
     { label: 'Sign Up', to: '/signup' },
   ];
 
-  const activeStyle = {
-    fontWeight: 'bold',
-    borderBottom: '2px solid #fff',
-  };
-
   return (
     <>
       <AppBar position="static" sx={{ backgroundColor: '#911209' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
+          {/* Logo */}
           <Box
             component={NavLink}
             to="/"
@@ -81,16 +77,16 @@ const Header: React.FC = () => {
                     <List>
                       {(isAuthenticated ? authLinks : publicLinks).map(({ label, to }) => (
                         <ListItem
-                          button
                           key={label}
                           component={NavLink}
                           to={to}
                           onClick={() => setDrawerOpen(false)}
-                          style={({ isActive }) =>
-                            isActive
-                              ? { fontWeight: 'bold', backgroundColor: '#fce8e6' }
-                              : undefined
-                          }
+                          sx={{
+                            '&.active': {
+                              fontWeight: 'bold',
+                              backgroundColor: '#fce8e6',
+                            },
+                          }}
                         >
                           <ListItemText primary={label} />
                         </ListItem>
@@ -121,14 +117,24 @@ const Header: React.FC = () => {
                   color="inherit"
                   component={NavLink}
                   to={to}
-                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                  sx={{
+                    textTransform: 'none',
+                    '&.active': {
+                      fontWeight: 'bold',
+                      borderBottom: '2px solid #fff',
+                    },
+                  }}
                 >
                   {label}
                 </Button>
               ))}
 
               {isAuthenticated && (
-                <Button color="inherit" onClick={() => dispatch(logout())} sx={{ ml: 3 }}>
+                <Button
+                  color="inherit"
+                  onClick={() => dispatch(logout())}
+                  sx={{ ml: 3, textTransform: 'none' }}
+                >
                   Logout
                 </Button>
               )}

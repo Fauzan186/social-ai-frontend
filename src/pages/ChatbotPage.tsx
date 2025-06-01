@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Typography, Paper } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import jsPDF from 'jspdf';
 
 import ControlsBar from '../components/chatbot/ControlsBar';

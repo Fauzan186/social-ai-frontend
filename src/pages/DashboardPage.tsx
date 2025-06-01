@@ -10,7 +10,6 @@ import {
   ListItemText,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import ChatIcon from '@mui/icons-material/Chat';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -109,7 +108,7 @@ const DashboardPage: React.FC = () => {
                     outerRadius={120}
                     label
                   >
-                    {data.map((entry, index) => (
+                    {data.map((_:any, index:any) => (
                       <Cell key={index} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
