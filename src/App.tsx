@@ -6,6 +6,7 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import DashboardPage from "./pages/DashboardPage";
 import PrivateRoute from "./routes/PrivateRoute";
+import ChatbotPage from "./pages/ChatbotPage";
 
 const App: React.FC = () => {
   return (
@@ -18,7 +19,15 @@ const App: React.FC = () => {
           path="/dashboard"
           element={
             // <PrivateRoute>
-              <DashboardPage />
+            <DashboardPage />
+            // </PrivateRoute>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            // <PrivateRoute>
+            <ChatbotPage />
             // </PrivateRoute>
           }
         />
