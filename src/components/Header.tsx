@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+// src/components/Header.tsx
+import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   IconButton,
   Drawer,
@@ -10,44 +10,48 @@ import {
   ListItem,
   ListItemText,
   Box,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme, useMediaQuery } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import zetaiLogo from "../assets/zetaai_100px_with_10px_margin.png"; // Adjust as needed
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useTheme, useMediaQuery } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import {  logout } from '../features/common/authSlice';
+import zetaiLogo from '../assets/zetaai_100px_with_10px_margin.png';
 
-const Header: React.FC<{ onNavigate?: (section: string) => void }> = ({
-  onNavigate,
-}) => {
+const Header: React.FC = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const handleNavigate = (section: string) => {
-    if (onNavigate) {
-      onNavigate(section);
-    }
-    setDrawerOpen(false);
+  const isAuthenticated = useSelector((state: any) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+
+  const authLinks = [
+    { label: 'Chat', to: '/chat' },
+    { label: 'Dashboard', to: '/dashboard' },
+  ];
+
+  const publicLinks = [
+    { label: 'Sign In', to: '/signin' },
+    { label: 'Sign Up', to: '/signup' },
+  ];
+
+  const activeStyle = {
+    fontWeight: 'bold',
+    borderBottom: '2px solid #fff',
   };
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "#911209" }}>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          {/* Logo */}
-          {/* Logo */}
+      <AppBar position="static" sx={{ backgroundColor: '#911209' }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box
-            component={RouterLink}
+            component={NavLink}
             to="/"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              textDecoration: "none",
-            }}
+            sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
           >
-            <img src={zetaiLogo} alt="ZetaAI Logo" style={{ height: "60px" }} />
+            <img src={zetaiLogo} alt="ZetaAI Logo" style={{ height: 60 }} />
           </Box>
-
 
           {isMobile ? (
             <>
@@ -66,97 +70,68 @@ const Header: React.FC<{ onNavigate?: (section: string) => void }> = ({
                 <Box
                   sx={{
                     width: 250,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                    justifyContent: "space-between",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    justifyContent: 'space-between',
                     p: 2,
                   }}
                 >
                   <Box>
                     <List>
-                      <ListItem
-                        button
-                        onClick={() => handleNavigate("features")}
-                      >
-                        <ListItemText primary="Features" />
-                      </ListItem>
-                      <ListItem
-                        button
-                        onClick={() => handleNavigate("howItWorks")}
-                      >
-                        <ListItemText primary="How It Works" />
-                      </ListItem>
-                      <ListItem button onClick={() => handleNavigate("faqs")}>
-                        <ListItemText primary="FAQs" />
-                      </ListItem>
-                      <ListItem
-                        button
-                        onClick={() => handleNavigate("contact")}
-                      >
-                        <ListItemText primary="Contact" />
-                      </ListItem>
+                      {(isAuthenticated ? authLinks : publicLinks).map(({ label, to }) => (
+                        <ListItem
+                          button
+                          key={label}
+                          component={NavLink}
+                          to={to}
+                          onClick={() => setDrawerOpen(false)}
+                          style={({ isActive }) =>
+                            isActive
+                              ? { fontWeight: 'bold', backgroundColor: '#fce8e6' }
+                              : undefined
+                          }
+                        >
+                          <ListItemText primary={label} />
+                        </ListItem>
+                      ))}
                     </List>
                   </Box>
-                  <Box sx={{ mt: 2 }}>
+
+                  {isAuthenticated && (
                     <Button
                       fullWidth
-                      component={RouterLink}
-                      to="/signin"
                       variant="outlined"
-                      sx={{ mb: 1 }}
+                      onClick={() => {
+                        dispatch(logout());
+                        setDrawerOpen(false);
+                      }}
                     >
-                      Sign In
+                      Logout
                     </Button>
-                    <Button
-                      fullWidth
-                      component={RouterLink}
-                      to="/signup"
-                      variant="contained"
-                    >
-                      Sign Up
-                    </Button>
-                  </Box>
+                  )}
                 </Box>
               </Drawer>
             </>
           ) : (
-            // Desktop: nav left, auth right
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Button
-                color="inherit"
-                onClick={() => handleNavigate("features")}
-              >
-                Features
-              </Button>
-              <Button
-                color="inherit"
-                onClick={() => handleNavigate("howItWorks")}
-              >
-                How It Works
-              </Button>
-              <Button color="inherit" onClick={() => handleNavigate("faqs")}>
-                FAQs
-              </Button>
-              <Button color="inherit" onClick={() => handleNavigate("contact")}>
-                Contact
-              </Button>
-              <Button
-                color="inherit"
-                component={RouterLink}
-                to="/signin"
-                sx={{ ml: 4 }}
-              >
-                Sign In
-              </Button>
-              <Button
-                variant="contained"
-                component={RouterLink}
-                to="/signup"
-                sx={{ backgroundColor: "white", color: "#911209", ml: 1 }}
-              >
-                Sign Up
-              </Button>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              {(isAuthenticated ? authLinks : publicLinks).map(({ label, to }) => (
+                <Button
+                  key={label}
+                  color="inherit"
+                  component={NavLink}
+                  to={to}
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                  {label}
+                </Button>
+              ))}
+
+              {isAuthenticated && (
+                <Button color="inherit" onClick={() => dispatch(logout())} sx={{ ml: 3 }}>
+                  Logout
+                </Button>
+              )}
             </Box>
           )}
         </Toolbar>

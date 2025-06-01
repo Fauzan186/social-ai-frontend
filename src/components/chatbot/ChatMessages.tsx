@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import {
   List,
   ListItem,
@@ -8,7 +8,6 @@ import {
   Tooltip,
   IconButton,
   Box,
-  CircularProgress,
 } from '@mui/material';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import FaceIcon from '@mui/icons-material/Face';
@@ -24,6 +23,23 @@ interface ChatMessagesProps {
   messages: Message[];
   loading: boolean;
 }
+
+const TypingDots: React.FC = () => {
+  const [dotCount, setDotCount] = useState(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDotCount((count) => (count >= 3 ? 1 : count + 1));
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <Typography variant="body1" sx={{ fontWeight: 500 }}>
+      Typing{'.'.repeat(dotCount)}
+    </Typography>
+  );
+};
 
 const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({ messages, loading }, ref) => (
   <List>
@@ -43,18 +59,19 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({ messages, 
             maxWidth: '70%',
             backgroundColor: msg.type === 'user' ? '#911209' : '#f0f0f0',
             color: msg.type === 'user' ? '#fff' : 'inherit',
+            borderRadius: 2,
           }}
         >
-          <Typography variant="body2">{msg.text}</Typography>
+          <Typography variant="body1">{msg.text}</Typography>
           {msg.type === 'bot' && (
             <Box sx={{ mt: 1, display: 'flex', gap: 1 }}>
               <Tooltip title="Like">
-                <IconButton size="small">
+                <IconButton size="small" aria-label="like message">
                   <ThumbUpAltIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Dislike">
-                <IconButton size="small">
+                <IconButton size="small" aria-label="dislike message">
                   <ThumbDownAltIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
@@ -73,9 +90,17 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({ messages, 
         <Avatar sx={{ bgcolor: '#e0e0e0', mr: 1 }}>
           <SmartToyIcon />
         </Avatar>
-        <Paper sx={{ p: 1.5, backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', gap: 1 }}>
-          <CircularProgress size={16} />
-          <Typography variant="body2">Typing...</Typography>
+        <Paper
+          sx={{
+            p: 1.5,
+            backgroundColor: '#f0f0f0',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            borderRadius: 2,
+          }}
+        >
+          <TypingDots />
         </Paper>
       </ListItem>
     )}

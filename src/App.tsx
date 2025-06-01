@@ -18,17 +18,17 @@ const App: React.FC = () => {
         <Route
           path="/dashboard"
           element={
-            // <PrivateRoute>
-            <DashboardPage />
-            // </PrivateRoute>
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
           }
         />
         <Route
           path="/chat"
           element={
-            // <PrivateRoute>
-            <ChatbotPage />
-            // </PrivateRoute>
+            <PrivateRoute>
+              <ChatbotPage />
+            </PrivateRoute>
           }
         />
       </Routes>

@@ -5,11 +5,10 @@ import Footer from './Footer';
 
 const Layout: React.FC<{ children: React.ReactNode; onNavigate?: (section: string) => void }> = ({
   children,
-  onNavigate,
 }) => {
   return (
     <>
-      <Header onNavigate={onNavigate} />
+      <Header  />
       <main>{children}</main>
       <Footer />
     </>
