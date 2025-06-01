@@ -23,7 +23,7 @@ const ControlsBar: React.FC<ControlsBarProps> = ({
   onExport,
 }) => (
   <Stack direction="row" spacing={1} alignItems="center">
-    <FormControl size="small" sx={{ minWidth: 100 }}>
+    <FormControl size="small" sx={{ minWidth: 100 }} >
       <InputLabel>Voice</InputLabel>
       <Select
         value={voice}

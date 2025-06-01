@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import jsPDF from 'jspdf';
 
-import SampleQueries from '../components/chatbot/SampleQueries';
 import ControlsBar from '../components/chatbot/ControlsBar';
 import ChatMessages from '../components/chatbot/ChatMessages';
 import ChatInput from '../components/chatbot/ChatInput';
@@ -10,14 +9,7 @@ import Layout from '../components/Layout';
 import ChatbotLanding from '../components/chatbot/ChatbotLanding';
 
 
-
 type Message = { type: 'user' | 'bot'; text: string };
-
-const sampleQueries = [
-  'How can I schedule a post?',
-  'What is engagement rate?',
-  'Suggest hashtags for tech content',
-];
 
 const ChatbotPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -125,7 +117,7 @@ const ChatbotPage: React.FC = () => {
     <Layout>
       <Box sx={{ p: { xs: 3, md: 6 }, minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
       
-        {/* <Box
+        <Box
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -135,14 +127,13 @@ const ChatbotPage: React.FC = () => {
             gap: 2,
           }}
         >
-          <SampleQueries queries={sampleQueries} onSelect={handleSend} />
           <ControlsBar
             voice={voice}
             setVoice={setVoice}
             onReset={() => setMessages([])}
             onExport={exportPDF}
           />
-        </Box> */}
+        </Box>
 
         <Paper elevation={3} sx={{ p: 2, borderRadius: 3, height: 580, backgroundColor: '#fff' }}>
           <Box
