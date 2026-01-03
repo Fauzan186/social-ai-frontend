@@ -7,12 +7,17 @@ import SignUp from "./components/auth/SignUp";
 import DashboardPage from "./pages/DashboardPage";
 import PrivateRoute from "./routes/PrivateRoute";
 import ChatbotPage from "./pages/ChatbotPage";
+import BlogListPage from "./pages/BlogListPage";
+import BlogDetails from "./pages/BlogDetails";
+
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/blog-list" element={<BlogListPage />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route

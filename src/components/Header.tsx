@@ -29,9 +29,11 @@ const Header: React.FC = () => {
   const authLinks = [
     { label: 'Chat', to: '/chat' },
     { label: 'Dashboard', to: '/dashboard' },
+    { label: 'Blogs', to: '/blog-list' },
   ];
 
   const publicLinks = [
+    { label: 'Blogs', to: '/blog-list' },
     { label: 'Sign In', to: '/signin' },
     { label: 'Sign Up', to: '/signup' },
   ];
