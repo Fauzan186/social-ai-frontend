@@ -1,6 +1,6 @@
 // src/components/HeroSection.tsx
 import React from 'react';
-import { Button, Typography, Container } from '@mui/material';
+import { Button, Typography, Container, Box } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -22,7 +22,7 @@ const HeroSection: React.FC<{ onNavigate: (section: string) => void }> = ({ onNa
       }}
     >
       <Container maxWidth="lg">
-        {/* Main Heading with Animation */}
+        {/* Main Heading */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,18 +34,17 @@ const HeroSection: React.FC<{ onNavigate: (section: string) => void }> = ({ onNa
             align="center"
             sx={{
               fontWeight: 700,
-              fontSize: '3.5rem',
-              marginBottom: theme.spacing(2.5),
-              fontFamily: theme.typography.h2.fontFamily,
+              fontSize: '3rem',
+              marginBottom: theme.spacing(2),
             }}
           >
-            Empower Social Media with AI Automation
+            Automate Your Business with <strong>AI Agents</strong>
           </Typography>
         </motion.div>
 
-        {/* Subheading with Social Media Icons and Animation */}
+        {/* Subheading */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
@@ -56,39 +55,43 @@ const HeroSection: React.FC<{ onNavigate: (section: string) => void }> = ({ onNa
             paragraph
             sx={{
               fontWeight: 300,
-              fontSize: '1.2rem',
+              fontSize: '1.15rem',
               marginBottom: theme.spacing(5),
               lineHeight: 1.6,
-              fontFamily: theme.typography.fontFamily,
             }}
           >
-            Effortlessly manage interactions on{' '}
-            <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-              <FacebookIcon style={{ marginRight: '8px' }} fontSize="small" />
-              Facebook
-            </span>
-            ,{' '}
-            <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-              <InstagramIcon style={{ marginRight: '8px' }} fontSize="small" />
-              Instagram
-            </span>
-            ,{' '}
-            <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-              <TwitterIcon style={{ marginRight: '8px' }} fontSize="small" />
-              X (Twitter)
-            </span>
-            ,{' '}
-            <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-              <WhatsAppIcon style={{ marginRight: '8px' }} fontSize="small" />
-              WhatsApp
-            </span>
-            , and more. Improve engagement, automate responses, and gain insights with ease.
+            Build intelligent <strong>AI chatbots</strong>, <strong>RAG assistants</strong>, and <strong>automations</strong> to manage messages and workflows across:
           </Typography>
+
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: 3,
+              flexWrap: 'wrap',
+              fontSize: '1rem',
+              fontWeight: 400,
+              color: 'white',
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <FacebookIcon fontSize="small" /> <strong>Facebook</strong>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <InstagramIcon fontSize="small" /> <strong>Instagram</strong>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <TwitterIcon fontSize="small" /> <strong>X (Twitter)</strong>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <WhatsAppIcon fontSize="small" /> <strong>WhatsApp</strong>
+            </Box>
+          </Box>
         </motion.div>
 
-        {/* Button Section with Animation */}
+        {/* Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           style={{ marginTop: theme.spacing(4) }}
@@ -106,7 +109,7 @@ const HeroSection: React.FC<{ onNavigate: (section: string) => void }> = ({ onNa
               fontWeight: '600',
             }}
           >
-            Learn More
+            Explore AI Solutions
           </Button>
 
           <Button
@@ -122,7 +125,7 @@ const HeroSection: React.FC<{ onNavigate: (section: string) => void }> = ({ onNa
               fontWeight: '600',
             }}
           >
-            Contact Us
+            Talk to an Expert
           </Button>
         </motion.div>
       </Container>

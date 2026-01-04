@@ -28,6 +28,7 @@ const HomePage: React.FC = () => {
   return (
     <Layout onNavigate={handleNavigation}>
       <HeroSection onNavigate={handleNavigation} />
+      
       <ZetaAIFeatures />
       <div ref={featuresRef}>
         <FeaturesSection />
