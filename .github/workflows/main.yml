@@ -24,21 +24,20 @@ jobs:
         rm -f package-lock.json
         npm install --legacy-peer-deps
 
-
-    - name: Build React App
+    - name: Build React App (Vite)
       run: npm run build
 
-    - name: Copy build to Azure VM
+    - name: Copy dist to Azure VM
       uses: appleboy/scp-action@v0.1.5
       with:
         host: ${{ secrets.AZURE_VM_IP }}
         username: ${{ secrets.AZURE_VM_USER }}
         key: ${{ secrets.AZURE_SSH_KEY }}
         port: 22
-        source: "build/*"
+        source: "dist/*"        # <-- Correct folder
         target: "/home/${{ secrets.AZURE_VM_USER }}/react-app/"
 
-    - name: Restart Nginx
+    - name: Deploy and reload Nginx
       uses: appleboy/ssh-action@v0.1.5
       with:
         host: ${{ secrets.AZURE_VM_IP }}
