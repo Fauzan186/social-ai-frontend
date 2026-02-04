@@ -18,8 +18,11 @@ jobs:
       with:
         node-version: 20
 
-    - name: Install dependencies
-      run: npm ci
+    - name: Force install dependencies
+      run: |
+        rm -rf node_modules
+        rm -f package-lock.json
+        npm install
 
     - name: Build React App
       run: npm run build
@@ -42,5 +45,7 @@ jobs:
         key: ${{ secrets.AZURE_SSH_KEY }}
         port: 22
         script: |
+          sudo rm -rf /var/www/html/*
           sudo mv /home/${{ secrets.AZURE_VM_USER }}/react-app/* /var/www/html/
-          sudo systemctl restart nginx
+          sudo chown -R www-data:www-data /var/www/html
+          sudo nginx -s reload
