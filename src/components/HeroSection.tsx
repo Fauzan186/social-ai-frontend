@@ -38,7 +38,7 @@ const HeroSection: React.FC<{ onNavigate: (section: string) => void }> = ({ onNa
               marginBottom: theme.spacing(2),
             }}
           >
-            Automate Your Business with <strong>AI Agents</strong>
+            Automate Your Business with <strong>AI Agents </strong>
           </Typography>
         </motion.div>
 
@@ -60,7 +60,7 @@ const HeroSection: React.FC<{ onNavigate: (section: string) => void }> = ({ onNa
               lineHeight: 1.6,
             }}
           >
-            Build intelligent <strong>AI chatbots</strong>, <strong>RAG assistants</strong>, and <strong>automations</strong> to manage messages and workflows across:
+            Build intelligent <strong> Smart AI chatbots</strong>, <strong>RAG assistants</strong>, and <strong>automations</strong> to manage messages and workflows across:
           </Typography>
 
           <Box
