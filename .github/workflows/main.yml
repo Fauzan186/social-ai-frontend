@@ -34,8 +34,9 @@ jobs:
         username: ${{ secrets.AZURE_VM_USER }}
         key: ${{ secrets.AZURE_SSH_KEY }}
         port: 22
-        source: "react-app/*"       
-        target: "/var/www/"   # <-- Correct deploy folder for port 4001
+        source: "dist/*"       
+        target: "/var/www/react-app/"
+
 
     - name: Set permissions and reload Nginx
       uses: appleboy/ssh-action@v0.1.5
