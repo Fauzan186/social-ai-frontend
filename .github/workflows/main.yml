@@ -27,6 +27,18 @@ jobs:
     - name: Build React App (Vite)
       run: npm run build
 
+    - name: Prepare /var/www/react-app permissions
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.AZURE_VM_IP }}
+        username: ${{ secrets.AZURE_VM_USER }}
+        key: ${{ secrets.AZURE_SSH_KEY }}
+        port: 22
+        script: |
+          sudo mkdir -p /var/www/react-app
+          sudo chown -R $USER:$USER /var/www/react-app
+          sudo chmod -R 755 /var/www/react-app
+
     - name: Copy dist to Azure VM
       uses: appleboy/scp-action@v0.1.5
       with:
@@ -34,11 +46,10 @@ jobs:
         username: ${{ secrets.AZURE_VM_USER }}
         key: ${{ secrets.AZURE_SSH_KEY }}
         port: 22
-        source: "dist/*"       
+        source: "dist/*"
         target: "/var/www/react-app/"
 
-
-    - name: Set permissions and reload Nginx
+    - name: Set final permissions and reload Nginx
       uses: appleboy/ssh-action@v0.1.5
       with:
         host: ${{ secrets.AZURE_VM_IP }}
